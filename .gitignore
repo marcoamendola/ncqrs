@@ -38,3 +38,5 @@ release
 
 #dotCover
 *.dotCover
+*.mdf
+*.ldf
