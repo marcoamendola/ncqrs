@@ -43,7 +43,7 @@ namespace Ncqrs.Config.Windsor
 
         public void Publish(IEnumerable<IPublishableEvent> eventMessages)
         {
-            eventMessages.ForEach(Publish);
+            eventMessages.ToList().ForEach(Publish);
         }
         
         static void PublishToHandlers(dynamic eventMessage, Type eventMessageType, IEnumerable<dynamic> handlers)

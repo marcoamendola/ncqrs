@@ -24,10 +24,10 @@ namespace Ncqrs.Config.Windsor
         public virtual void Execute(ICommand command)
         {
             var context = new CommandContext(command);
-            var interceptors = _container.ResolveAll<ICommandServiceInterceptor>();
+            var interceptors = _container.ResolveAll<ICommandServiceInterceptor>().ToList();
             try
             {
-                interceptors.ForEach(i => i.OnBeforeBeforeExecutorResolving(context));
+               interceptors.ForEach(i => i.OnBeforeBeforeExecutorResolving(context));
 
                 var executor = GetExecutorForCommand(command);
                 if (executor == null) throw new ExecutorForCommandNotFoundException(command.GetType());
